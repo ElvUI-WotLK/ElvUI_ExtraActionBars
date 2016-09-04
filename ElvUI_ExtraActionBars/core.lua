@@ -4,57 +4,6 @@ local AB = E:GetModule("ActionBars");
 local EP = LibStub("LibElvUIPlugin-1.0");
 local addon, ns = ...;
 
-local split = string.split;
-
-local function CreateBar(id)
-	local bar = CreateFrame("Frame", "ElvUI_Bar" .. id, E.UIParent, "SecureHandlerBaseTemplate, SecureHandlerShowHideTemplate");
-	local point, anchor, attachTo, x, y = split(",", AB["barDefaults"]["bar" .. id].position);
-	bar:Point(point, anchor, attachTo, x, y);
-	bar.id = id;
-	bar:CreateBackdrop("Default");
-	bar:SetFrameStrata("LOW");
-
-	local offset = E.Spacing;
-	bar.backdrop:SetPoint("TOPLEFT", bar, "TOPLEFT", offset, -offset);
-	bar.backdrop:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", -offset, offset);
-
-	bar.buttons = {};
-	bar.bindButtons = AB["barDefaults"]["bar" .. id].bindButtons;
-
-	AB:HookScript(bar, "OnEnter", "Bar_OnEnter");
-	AB:HookScript(bar, "OnLeave", "Bar_OnLeave");
-
-	for i = 1, 12 do
-		bar.buttons[i] = CreateFrame("CheckButton", format(bar:GetName() .. "Button%d", i), bar, "AlternateButtonTemplate");
-		AB:StyleButton(bar.buttons[i]);
-
-		bar.buttons[i]:SetAttribute("saveentries", "ExtraBar_ButtonEntries");
-		bar.buttons[i]:SetAttribute("savesettings", "ExtraBar_ButtonSettings");
-
-		AB:HookScript(bar.buttons[i], "OnEnter", "Button_OnEnter");
-		AB:HookScript(bar.buttons[i], "OnLeave", "Button_OnLeave");
-	end
-
-	bar:Execute([[ebButtons = newtable(); owner:GetChildList(ebButtons);]]);
-	bar:SetAttribute("_onstate-page", [[ 
-		for i, button in ipairs(ebButtons) do
-			button:SetAttribute("actionpage", tonumber(newstate));
-		end
-	]]);
-	bar:SetAttribute("_onstate-show", [[
-		if(newstate == "hide") then
-			self:Hide();
-		else
-			self:Show();
-		end
-	]]);
-
-	AB["handledBars"]["bar"..id] = bar;
-	E:CreateMover(bar, "ElvAB_"..id, L["Bar "]..id, nil, nil, nil,"ALL,ACTIONBARS");
-	AB:PositionAndSizeBar("bar"..id);
-	return bar;
-end
-
 function EAB:UpdateButtonSettings()
 	for i = 7, 10 do
 		AB:PositionAndSizeBar("bar"..i);
@@ -88,15 +37,17 @@ function EAB:CreateBars()
 	};
 
 	for i = 7, 10 do
-		CreateBar(i);
+		AB:CreateBar(i);
+	end
+	
+	for b, _ in pairs(AB["handledbuttons"]) do
+		AB:RegisterButton(b, true);
 	end
 
-	if(not ExtraBar_ButtonEntries) then
-		ExtraBar_ButtonEntries = {};
-		ExtraBar_ButtonSettings = {};
-	end
-	ExtraBar_ButtonEntries, ExtraBar_ButtonSettings = ABTMethods_UpdateSavedDataVersion(ExtraBar_ButtonEntries, ExtraBar_ButtonSettings);
-	ABTMethods_LoadAll(ExtraBar_ButtonEntries, ExtraBar_ButtonSettings);
+	AB:UpdateButtonSettings();
+	AB:ReassignBindings();
+
+	hooksecurefunc(AB, 'UpdateButtonSettings', EAB.UpdateButtonSettings)
 end
 
 function EAB:PLAYER_REGEN_ENABLED()
