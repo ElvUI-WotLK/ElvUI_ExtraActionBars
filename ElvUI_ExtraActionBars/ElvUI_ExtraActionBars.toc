@@ -1,0 +1,12 @@
+## Interface: 30300
+## Author: Bunny
+## Version: 1.00
+## Title: |cffA11313E|r|cffC4C4C4lvUI|r |cffA11313E|r|cffC4C4C4xtra|r |cffA11313A|r|cffC4C4C4ction|r |cffA11313B|r|cffC4C4C4ars|r
+## Notes: Adds 4 extra actionbars to ElvUI.
+## RequiredDeps: ElvUI
+## SavedVariablesPerCharacter: ExtraBar_ButtonEntries, ExtraBar_ButtonSettings
+
+libs\AlternateButtonTemplate\AlternateButtonTemplate.xml
+locales.lua
+config.lua
+core.lua
