@@ -335,8 +335,7 @@ function ABTMethods_OnLoad(self)
 	self.disableTooltip = false;
 	self:RegisterForDrag("LeftButton", "RightButton");
 	self:RegisterForClicks("AnyUp");
-	
-	_G[self:GetName().."NormalTexture"]:SetVertexColor(1.0, 1.0, 1.0, 0.5);
+
 	table.insert(ABTFrame.buttons, self);
 end
 
@@ -402,7 +401,7 @@ function ABTMethods_UpdateTexture(self)
 		icon:SetTexture(texture);
 		icon:SetVertexColor(1.0, 1.0, 1.0, 1.0);
 		icon:Show();
-		self:SetNormalTexture("Interface\\Buttons\\UI-Quickslot2");
+	--	self:SetNormalTexture("Interface\\Buttons\\UI-Quickslot2");
 
 	elseif (command == "spell") then
 		--This is a special state where the spell is no longer known by the player, we will keep the spell incase they relearn it though,
@@ -410,14 +409,14 @@ function ABTMethods_UpdateTexture(self)
 		icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark");
 		icon:SetVertexColor(1.0, 1.0, 1.0, 0.5);
 		icon:Show();
-		self:SetNormalTexture("Interface\\Buttons\\UI-Quickslot2");
+	--	self:SetNormalTexture("Interface\\Buttons\\UI-Quickslot2");
 		
 	else
 		--there is no texture to set for this button (should only happen when the button command is "none"
 		local buttonCooldown = _G[self:GetName().."Cooldown"];
 		icon:Hide();
 		buttonCooldown:Hide();
-		self:SetNormalTexture("Interface\\Buttons\\UI-Quickslot");
+	--	self:SetNormalTexture("Interface\\Buttons\\UI-Quickslot");
 	end
 
 end
@@ -581,7 +580,7 @@ end
 function ABTMethods_UpdateUsable(self)
 	local name = self:GetName();
 	local icon = _G[name.."Icon"];
-	local normalTexture = _G[name.."NormalTexture"];
+	--local normalTexture = _G[name.."NormalTexture"];
 	local isUsable, notEnoughMana = true, false;
 	local command, value = ABTMethods_GetCommand(self);
 
@@ -596,13 +595,13 @@ function ABTMethods_UpdateUsable(self)
 
 	if (isUsable) then
 		icon:SetVertexColor(1.0, 1.0, 1.0);
-		normalTexture:SetVertexColor(1.0, 1.0, 1.0);
+	--	normalTexture:SetVertexColor(1.0, 1.0, 1.0);
 	elseif (notEnoughMana) then
 		icon:SetVertexColor(0.5, 0.5, 1.0);
-		normalTexture:SetVertexColor(0.5, 0.5, 1.0);
+	--	normalTexture:SetVertexColor(0.5, 0.5, 1.0);
 	else
 		icon:SetVertexColor(0.4, 0.4, 0.4);
-		normalTexture:SetVertexColor(1.0, 1.0, 1.0);
+	--	normalTexture:SetVertexColor(1.0, 1.0, 1.0);
 	end
 end
 

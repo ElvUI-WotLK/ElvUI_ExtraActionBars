@@ -91,10 +91,6 @@ function EAB:CreateBars()
 		CreateBar(i);
 	end
 
-	for b, _ in pairs(AB["handledbuttons"]) do
-		AB:RegisterButton(b, true);
-	end
-
 	if(not ExtraBar_ButtonEntries) then
 		ExtraBar_ButtonEntries = {};
 		ExtraBar_ButtonSettings = {};
