@@ -7,6 +7,5 @@
 ## SavedVariablesPerCharacter: ExtraBar_ButtonEntries, ExtraBar_ButtonSettings
 
 libs\AlternateButtonTemplate\AlternateButtonTemplate.xml
-locales.lua
 config.lua
 core.lua

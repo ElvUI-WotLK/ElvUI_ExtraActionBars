@@ -7,8 +7,8 @@ local addon, ns = ...;
 local split = string.split;
 
 local function CreateBar(id)
-	local bar = CreateFrame("Frame", "ElvUI_Bar"..id, E.UIParent, "SecureHandlerBaseTemplate, SecureHandlerShowHideTemplate");
-	local point, anchor, attachTo, x, y = split(",", AB["barDefaults"]["bar"..id].position);
+	local bar = CreateFrame("Frame", "ElvUI_Bar" .. id, E.UIParent, "SecureHandlerBaseTemplate, SecureHandlerShowHideTemplate");
+	local point, anchor, attachTo, x, y = split(",", AB["barDefaults"]["bar" .. id].position);
 	bar:Point(point, anchor, attachTo, x, y);
 	bar.id = id;
 	bar:CreateBackdrop("Default");
@@ -19,12 +19,13 @@ local function CreateBar(id)
 	bar.backdrop:SetPoint("BOTTOMRIGHT", bar, "BOTTOMRIGHT", -offset, offset);
 
 	bar.buttons = {};
-	bar.bindButtons = AB["barDefaults"]["bar"..id].bindButtons;
+	bar.bindButtons = AB["barDefaults"]["bar" .. id].bindButtons;
+
 	AB:HookScript(bar, "OnEnter", "Bar_OnEnter");
 	AB:HookScript(bar, "OnLeave", "Bar_OnLeave");
 
 	for i = 1, 12 do
-		bar.buttons[i] = CreateFrame("CheckButton", format(bar:GetName().."Button%d", i), bar, "AlternateButtonTemplate");
+		bar.buttons[i] = CreateFrame("CheckButton", format(bar:GetName() .. "Button%d", i), bar, "AlternateButtonTemplate");
 		AB:StyleButton(bar.buttons[i]);
 
 		bar.buttons[i]:SetAttribute("saveentries", "ExtraBar_ButtonEntries");
@@ -36,7 +37,7 @@ local function CreateBar(id)
 
 	bar:Execute([[ebButtons = newtable(); owner:GetChildList(ebButtons);]]);
 	bar:SetAttribute("_onstate-page", [[ 
-		for i, button in ipairs(buttons) do
+		for i, button in ipairs(ebButtons) do
 			button:SetAttribute("actionpage", tonumber(newstate));
 		end
 	]]);
