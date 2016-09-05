@@ -1,12 +1,12 @@
 local E, L, V, P, G, _ = unpack(ElvUI);
-local EAB = E:NewModule("ExtraActionBars","AceEvent-3.0");
+local EAB = E:NewModule("ExtraActionBars", "AceEvent-3.0");
 local AB = E:GetModule("ActionBars");
 
 local points = {
 	["TOPLEFT"] = "TOPLEFT",
 	["TOPRIGHT"] = "TOPRIGHT",
 	["BOTTOMLEFT"] = "BOTTOMLEFT",
-	["BOTTOMRIGHT"] = "BOTTOMRIGHT",
+	["BOTTOMRIGHT"] = "BOTTOMRIGHT"
 };
 
 P["actionbar"]["bar7"] = {
@@ -18,9 +18,9 @@ P["actionbar"]["bar7"] = {
 	["backdrop"] = true,
 	["heightMult"] = 1,
 	["widthMult"] = 1,
-	["buttonsize"] = 30,
-	["buttonspacing"] = 4,
-	["backdropSpacing"] = 4,
+	["buttonsize"] = 32,
+	["buttonspacing"] = 2,
+	["backdropSpacing"] = 2,
 	["alpha"] = 1,
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
@@ -37,9 +37,9 @@ P["actionbar"]["bar8"] = {
 	["backdrop"] = true,
 	["heightMult"] = 1,
 	["widthMult"] = 1,
-	["buttonsize"] = 30,
-	["buttonspacing"] = 4,
-	["backdropSpacing"] = 4,
+	["buttonsize"] = 32,
+	["buttonspacing"] = 2,
+	["backdropSpacing"] = 2,
 	["alpha"] = 1,
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
@@ -56,9 +56,9 @@ P["actionbar"]["bar9"] = {
 	["backdrop"] = true,
 	["heightMult"] = 1,
 	["widthMult"] = 1,
-	["buttonsize"] = 30,
-	["buttonspacing"] = 4,
-	["backdropSpacing"] = 4,
+	["buttonsize"] = 32,
+	["buttonspacing"] = 2,
+	["backdropSpacing"] = 2,
 	["alpha"] = 1,
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
@@ -75,9 +75,9 @@ P["actionbar"]["bar10"] = {
 	["backdrop"] = true,
 	["heightMult"] = 1,
 	["widthMult"] = 1,
-	["buttonsize"] = 30,
-	["buttonspacing"] = 4,
-	["backdropSpacing"] = 4,
+	["buttonsize"] = 32,
+	["buttonspacing"] = 2,
+	["backdropSpacing"] = 2,
 	["alpha"] = 1,
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
@@ -131,7 +131,7 @@ function EAB:InsertOptions()
 					type = "toggle",
 					name = L["Show Empty Buttons"],
 					order = 6,
-					set = function(info, value) E.db.actionbar["bar" .. i][ info[#info] ] = value; --[[AB:UpdateButtonSettingsForBar("bar"..i)]] end
+					set = function(info, value) E.db.actionbar["bar" .. i][ info[#info] ] = value; AB:UpdateButtonSettingsForBar("bar" .. i); end
 				},
 				mouseover = {
 					order = 7,
