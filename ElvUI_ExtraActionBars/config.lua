@@ -25,7 +25,7 @@ P["actionbar"]["bar7"] = {
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
 	["paging"] = {},
-	["visibility"] = "[vehicleui] hide show"
+	["visibility"] = "[vehicleui] hide; show"
 }
 
 P["actionbar"]["bar8"] = {
@@ -44,7 +44,7 @@ P["actionbar"]["bar8"] = {
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
 	["paging"] = {},
-	["visibility"] = "[vehicleui] hide show"
+	["visibility"] = "[vehicleui] hide; show"
 }
 
 P["actionbar"]["bar9"] = {
@@ -63,7 +63,7 @@ P["actionbar"]["bar9"] = {
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
 	["paging"] = {},
-	["visibility"] = "[vehicleui] hide show"
+	["visibility"] = "[vehicleui] hide; show"
 }
 
 P["actionbar"]["bar10"] = {
@@ -82,7 +82,7 @@ P["actionbar"]["bar10"] = {
 	["inheritGlobalFade"] = false,
 	["showGrid"] = true,
 	["paging"] = {},
-	["visibility"] = "[vehicleui] hide show"
+	["visibility"] = "[vehicleui] hide; show"
 }
 
 function EAB:InsertOptions()
